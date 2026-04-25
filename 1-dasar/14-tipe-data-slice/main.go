@@ -25,4 +25,14 @@ func main() {
 	fmt.Println("sumber:", sumber)
 	fmt.Println("tujuan:", tujuan)
 
+	//Latihan : Buat slice kosong daftarBelanja. Tambahkan 4 item menggunakan append(). Lalu cetak semua item dan jumlahnya menggunakan len().
+	var daftarBelanja []string
+	daftarBelanja = append(daftarBelanja, "sayur")
+	daftarBelanja = append(daftarBelanja, "minyak")
+	daftarBelanja = append(daftarBelanja, "telur")
+	daftarBelanja = append(daftarBelanja, "beras")
+	daftarBelanja = append(daftarBelanja, "sabun")
+	fmt.Println("\nDaftar Belanja:", daftarBelanja)
+	fmt.Println("Jumlah Belanjaan:", len(daftarBelanja))
+	fmt.Println("Kapasitas Daftar Belanja:", cap(daftarBelanja))
 }
