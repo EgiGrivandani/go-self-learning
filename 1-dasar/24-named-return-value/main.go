@@ -22,6 +22,7 @@ func HitungLuasPersegiPanjang(panjang, lebar float64) (luas, keliling float64) {
 	luas = panjang * lebar
 	keliling = 2 * (panjang + lebar)
 	return
+
 }
 
 func cekUmur(umur int) (pesan string) {
