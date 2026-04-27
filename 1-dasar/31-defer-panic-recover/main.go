@@ -30,7 +30,7 @@ func sampleRecover() {
 	fmt.Println("Sebelum panic")
 	panic("Error: sesuatu yang buruk terjadi")
 
-	fmt.Println("Pesan ini tidak akan di munculkan, karena sudah panic")
+	//fmt.Println("Pesan ini tidak akan di munculkan, karena sudah panic")
 }
 
 func main() {
