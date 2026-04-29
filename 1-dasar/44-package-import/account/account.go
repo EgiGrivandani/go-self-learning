@@ -2,7 +2,6 @@ package account
 
 import (
 	"fmt"
-	"math/rand"
 )
 
 type Account struct {
@@ -14,7 +13,7 @@ type Account struct {
 }
 
 type ListAccount struct {
-	List map[string]Account
+	List map[int]Account
 }
 
 func (l ListAccount) existNik(Nik string) bool {
@@ -35,37 +34,38 @@ func (l ListAccount) existNorek(Norek int) bool {
 	return false
 }
 
-func (l ListAccount) GetId(nik string) {
+func (l ListAccount) FindNorek(norek int) (Account, bool) {
+	acc, ok := l.List[norek]
+	return acc, ok
+}
+
+func (l ListAccount) GetId(norek int) {
 	fmt.Println("====DATA Nasabah====")
-	h := l.List[nik]
-	fmt.Printf("%s - %d - %s -  %d - Rp %d\n", h.Nik, h.Norek, h.Nasabah, h.Status, h.Saldo)
+	h := l.List[norek]
+	fmt.Printf("%d - %s - %s -  %d - Rp %d\n", h.Norek, h.Nik, h.Nasabah, h.Status, h.Saldo)
 }
 
 func (l ListAccount) GetAll() {
 	fmt.Println("====DATA ACCOUNT====")
 	for _, h := range l.List {
-		fmt.Printf("%s - %d - %s -  %d - Rp %d\n", h.Nik, h.Norek, h.Nasabah, h.Status, h.Saldo)
+		fmt.Printf("%d - %s - %s -  %d - Rp %d\n", h.Norek, h.Nik, h.Nasabah, h.Status, h.Saldo)
 	}
 }
 
-func (l *ListAccount) Add(Nik, Nasabah string) bool {
+func (l *ListAccount) Add(Nik string, Norek int, Nasabah string) bool {
 	if l.existNik(Nik) {
 		fmt.Println("Nik sudah terdaftar sebelumnya")
 		return false
 	}
 
-	var norek int
-	for {
-		norek = rand.Intn(10000)
-
-		if !l.existNorek(norek) {
-			break
-		}
+	if l.existNorek(Norek) {
+		fmt.Println("No Rekening sudah terdaftar sebelumnya")
+		return false
 	}
 
-	l.List[Nik] = Account{
+	l.List[Norek] = Account{
 		Nik:     Nik,
-		Norek:   norek,
+		Norek:   Norek,
 		Nasabah: Nasabah,
 		Saldo:   0,
 		Status:  1,
@@ -73,8 +73,8 @@ func (l *ListAccount) Add(Nik, Nasabah string) bool {
 	return true
 }
 
-func (l *ListAccount) Blocked(nik string) bool {
-	acc, ok := l.List[nik]
+func (l *ListAccount) Blocked(norek int) bool {
+	acc, ok := l.List[norek]
 	if !ok {
 		fmt.Println("Account tidak ditemukan")
 		return false
@@ -86,13 +86,13 @@ func (l *ListAccount) Blocked(nik string) bool {
 	}
 
 	acc.Status = 0
-	l.List[nik] = acc
+	l.List[norek] = acc
 
 	fmt.Println("Berhasil memblokir Akun")
 	return true
 }
-func (l *ListAccount) Active(nik string) bool {
-	acc, ok := l.List[nik]
+func (l *ListAccount) Active(norek int) bool {
+	acc, ok := l.List[norek]
 	if !ok {
 		fmt.Println("Account tidak ditemukan")
 		return false
@@ -104,7 +104,7 @@ func (l *ListAccount) Active(nik string) bool {
 	}
 
 	acc.Status = 1
-	l.List[nik] = acc
+	l.List[norek] = acc
 
 	fmt.Println("Berhasil mengaktifkan Akun")
 	return true
