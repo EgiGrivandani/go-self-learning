@@ -1,0 +1,3 @@
+Halo dari Go!
+Ini file yang dibuat oleh program.
+Baris ketiga.
