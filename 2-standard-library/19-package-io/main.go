@@ -29,4 +29,6 @@ func main() {
 		}
 		fmt.Printf("  Baca %d byte: %s\n", n, string(buf[:n]))
 	}
+
+	
 }
