@@ -19,3 +19,11 @@ func TestKurang(t *testing.T) {
 		t.Errorf("Kurang(10, 5) = %d; expected %d", hasil, expected)
 	}
 }
+
+func TestIsBilPrima(t *testing.T) {
+	hasil := IsBilPrima(3)
+	expected := true
+	if hasil != expected {
+		t.Errorf("is prima = %t; expected %t", hasil, expected)
+	}
+}
