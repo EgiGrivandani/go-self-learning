@@ -22,7 +22,7 @@ func TestGoroutine(t *testing.T) {
 	wg.Add(1)
 
 	go sayHello(&wg)
-	fmt.Println("hello world2")
+	fmt.Println("new hello")
 
 	wg.Wait()
 }
