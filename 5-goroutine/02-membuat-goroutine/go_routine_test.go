@@ -25,6 +25,7 @@ func TestGoroutine(t *testing.T) {
 	fmt.Println("new hello")
 
 	wg.Wait()
+
 }
 
 func TestGoroutine2(t *testing.T) {
