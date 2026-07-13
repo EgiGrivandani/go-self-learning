@@ -40,7 +40,5 @@ func TestGoroutine2(t *testing.T) {
 
 	wg.Wait()
 	
-
-	
 	
 }
